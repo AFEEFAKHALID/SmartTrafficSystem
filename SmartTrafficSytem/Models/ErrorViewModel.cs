@@ -1,4 +1,4 @@
-namespace SmartTrafficSytem.Models
+namespace SmartTrafficSystem.Models
 {
     public class ErrorViewModel
     {

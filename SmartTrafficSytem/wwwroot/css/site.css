@@ -316,14 +316,11 @@ RESPONSIVE
 
 @media (max-width: 768px) {
 
-    ```
     .dashboard-card {
         min-height: auto;
     }
-
+    
     .navbar-brand {
         font-size: 16px;
     }
-
-    ```
 }

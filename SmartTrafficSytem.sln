@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTrafficSytem", "SmartTrafficSytem\SmartTrafficSytem.csproj", "{B08AE3AE-5070-4A14-ADB2-3B7F09DEEC41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartTrafficSystem", "SmartTrafficSytem\SmartTrafficSystem.csproj", "{B08AE3AE-5070-4A14-ADB2-3B7F09DEEC41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
