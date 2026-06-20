@@ -1,0 +1,335 @@
+﻿@{
+    ViewData["Title"] = "Emergency Management";
+}
+
+<div class="container-fluid">
+
+    
+    <h2 class="mb-4">
+        🚑 Emergency Management Center
+    </h2>
+
+    <!-- Active Emergency Alert -->
+
+    <div class="alert alert-danger">
+
+        <h4>
+            Emergency Priority Mode
+        </h4>
+
+        Current Active Emergency:
+        Ambulance on Murree Road
+
+    </div>
+
+    <div class="row">
+
+        <!-- Emergency Form -->
+
+        <div class="col-md-6">
+
+            <div class="card">
+
+                <div class="card-header bg-danger text-white">
+
+                    Activate Emergency
+
+                </div>
+
+                <div class="card-body">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Select Road
+
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>Murree Road</option>
+                            <option>GT Road</option>
+                            <option>Islamabad Expressway</option>
+                            <option>Srinagar Highway</option>
+                            <option>Kashmir Highway</option>
+                            <option>IJP Road</option>
+                            <option>9th Avenue</option>
+                            <option>7th Avenue</option>
+                            <option>Faisal Avenue</option>
+                            <option>Jinnah Avenue</option>
+                            <option>Airport Road</option>
+                            <option>Peshawar Road</option>
+                            <option>Mall Road</option>
+                            <option>Club Road</option>
+                            <option>Rawal Road</option>
+                            <option>Park Road</option>
+                            <option>Lehtrar Road</option>
+                            <option>Adyala Road</option>
+                            <option>Chakri Road</option>
+                            <option>Service Road North</option>
+                            <option>Service Road South</option>
+                            <option>University Road</option>
+                            <option>Garden Avenue</option>
+                            <option>Commercial Avenue</option>
+                            <option>Double Road</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Vehicle Type
+
+                        </label>
+
+                        <select class="form-select">
+
+                            <option>Ambulance</option>
+                            <option>Police Vehicle</option>
+                            <option>Fire Brigade</option>
+                            <option>Rescue 1122</option>
+                            <option>VIP Convoy</option>
+                            <option>Military Vehicle</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Emergency Notes
+
+                        </label>
+
+                        <textarea class="form-control"
+                                  rows="4"></textarea>
+
+                    </div>
+
+                    <button class="btn btn-danger btn-lg">
+
+                        Activate Emergency
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Emergency Result -->
+
+        <div class="col-md-6">
+
+            <div class="card">
+
+                <div class="card-header bg-success text-white">
+
+                    Emergency Response Result
+
+                </div>
+
+                <div class="card-body">
+
+                    <h5>
+
+                        🚑 Emergency Activated Successfully
+
+                    </h5>
+
+                    <hr />
+
+                    <p>
+
+                        Vehicle:
+                        Ambulance
+
+                    </p>
+
+                    <p>
+
+                        Road:
+                        Murree Road
+
+                    </p>
+
+                    <p>
+
+                        Priority:
+                        HIGH
+
+                    </p>
+
+                    <p>
+
+                        Signal Override:
+                        ENABLED
+
+                    </p>
+
+                    <p>
+
+                        Estimated Clearance Time:
+                        5 Minutes
+
+                    </p>
+
+                    <p>
+
+                        Status:
+                        ACTIVE
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Priority Route -->
+
+    <div class="card">
+
+        <div class="card-header bg-primary text-white">
+
+            Recommended Priority Route
+
+        </div>
+
+        <div class="card-body">
+
+            <h5>
+
+                Route Generated Automatically
+
+            </h5>
+
+            <p>
+
+                Murree Road
+
+            </p>
+
+            <p>
+
+                ➜ Srinagar Highway
+
+            </p>
+
+            <p>
+
+                ➜ Faisal Avenue
+
+            </p>
+
+            <p>
+
+                ➜ PIMS Hospital
+
+            </p>
+
+            <p>
+
+                Estimated Travel Time:
+                7 Minutes
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Emergency History -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+
+            Emergency History
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Vehicle</th>
+                        <th>Road</th>
+                        <th>Status</th>
+                        <th>Clearance Time</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>20-Jun-2026</td>
+                        <td>Ambulance</td>
+                        <td>Murree Road</td>
+                        <td>Completed</td>
+                        <td>6 Min</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>20-Jun-2026</td>
+                        <td>Fire Brigade</td>
+                        <td>GT Road</td>
+                        <td>Completed</td>
+                        <td>8 Min</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>19-Jun-2026</td>
+                        <td>VIP Convoy</td>
+                        <td>Srinagar Highway</td>
+                        <td>Completed</td>
+                        <td>12 Min</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>19-Jun-2026</td>
+                        <td>Police Vehicle</td>
+                        <td>Airport Road</td>
+                        <td>Completed</td>
+                        <td>4 Min</td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    
+
+</div>

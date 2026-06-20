@@ -1,0 +1,329 @@
+/* ==========================================
+SMART TRAFFIC MANAGEMENT SYSTEM
+========================================== */
+
+body {
+    background-color: #F1F5F9;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==========================================
+NAVBAR
+========================================== */
+
+.custom-navbar {
+    background: linear-gradient(90deg, #0F172A, #1E293B);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.navbar-brand {
+    color: white !important;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.nav-link {
+    color: white !important;
+    margin-left: 10px;
+    font-weight: 500;
+}
+
+    .nav-link:hover {
+        color: #22C55E !important;
+    }
+
+/* ==========================================
+PAGE HEADINGS
+========================================== */
+
+h2 {
+    font-weight: 700;
+    color: #0F172A;
+    margin-bottom: 25px;
+}
+
+/* ==========================================
+DASHBOARD CARDS
+========================================== */
+
+.dashboard-card {
+    border-radius: 20px;
+    padding: 20px;
+    color: white;
+    min-height: 280px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,.15);
+    transition: all 0.3s ease;
+}
+
+    .dashboard-card:hover {
+        transform: translateY(-5px);
+    }
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.10);
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+    .card:hover {
+        transform: translateY(-3px);
+    }
+
+.vehicle-card {
+    background: linear-gradient(135deg,#2563EB,#1D4ED8);
+}
+
+.emergency-card {
+    background: linear-gradient(135deg,#DC2626,#991B1B);
+}
+
+.vip-card {
+    background: linear-gradient(135deg,#7C3AED,#5B21B6);
+}
+
+.system-card {
+    background: linear-gradient(135deg,#16A34A,#166534);
+}
+
+/* ==========================================
+GENERAL CARDS
+========================================== */
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.10);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ==========================================
+TABLES
+========================================== */
+
+.table {
+    background-color: white;
+}
+
+    .table th {
+        background-color: #0F172A;
+        color: white;
+        text-align: center;
+        vertical-align: middle;
+    }
+
+    .table td {
+        vertical-align: middle;
+    }
+
+.table-hover tbody tr:hover {
+    background-color: #E2E8F0;
+}
+
+/* ==========================================
+TRAFFIC STATUS LABELS
+========================================== */
+
+.low {
+    background: #22C55E;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.medium {
+    background: #3B82F6;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.high {
+    background: #F59E0B;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.heavy {
+    background: #EF4444;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+.critical {
+    background: #7F1D1D;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+}
+
+/* ==========================================
+PRIORITY ROADS
+========================================== */
+
+.priority-road {
+    background-color: #FEE2E2 !important;
+    border-left: 8px solid #DC2626;
+    font-weight: bold;
+}
+
+/* ==========================================
+SIGNAL CONTROL BUTTONS
+========================================== */
+
+.btn-green {
+    background-color: #22C55E;
+    color: white;
+    border: none;
+}
+
+    .btn-green:hover {
+        background-color: #16A34A;
+        color: white;
+    }
+
+.btn-yellow {
+    background-color: #F59E0B;
+    color: white;
+    border: none;
+}
+
+    .btn-yellow:hover {
+        background-color: #D97706;
+        color: white;
+    }
+
+.btn-red {
+    background-color: #DC2626;
+    color: white;
+    border: none;
+}
+
+    .btn-red:hover {
+        background-color: #B91C1C;
+        color: white;
+    }
+
+/* ==========================================
+ALERTS
+========================================== */
+
+.alert {
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+/* ==========================================
+FORMS
+========================================== */
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+}
+
+textarea {
+    resize: none;
+}
+
+/* ==========================================
+KPI CARDS
+========================================== */
+
+.border-primary {
+    border-left: 6px solid #2563EB !important;
+}
+
+.border-success {
+    border-left: 6px solid #16A34A !important;
+}
+
+.border-danger {
+    border-left: 6px solid #DC2626 !important;
+}
+
+.border-warning {
+    border-left: 6px solid #F59E0B !important;
+}
+
+.border-info {
+    border-left: 6px solid #0891B2 !important;
+}
+
+.border-dark {
+    border-left: 6px solid #0F172A !important;
+}
+
+/* ==========================================
+CHARTS
+========================================== */
+
+canvas {
+    max-height: 350px;
+}
+
+/* ==========================================
+FOOTER
+========================================== */
+
+.footer-section {
+    background-color: #0F172A;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+    .footer-section p {
+        margin: 5px;
+    }
+
+/* ==========================================
+SCROLLBAR
+========================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #CBD5E1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0F172A;
+    border-radius: 10px;
+}
+
+/* ==========================================
+RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    ```
+    .dashboard-card {
+        min-height: auto;
+    }
+
+    .navbar-brand {
+        font-size: 16px;
+    }
+
+    ```
+}

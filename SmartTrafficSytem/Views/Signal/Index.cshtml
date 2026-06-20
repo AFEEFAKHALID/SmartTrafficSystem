@@ -1,0 +1,365 @@
+﻿@{
+    ViewData["Title"] = "Signal Control";
+}
+
+<div class="container-fluid">
+
+    ```
+    <h2 class="mb-4">
+        🚦 Traffic Signal Control Center
+    </h2>
+
+    <!-- Control Summary -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h5>Green Signals</h5>
+                    <h3>5</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning">
+                <div class="card-body">
+                    <h5>Yellow Signals</h5>
+                    <h3>3</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger">
+                <div class="card-body">
+                    <h5>Red Signals</h5>
+                    <h3>7</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h5>Emergency Routes</h5>
+                    <h3>2</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Priority Alert -->
+
+    <div class="alert alert-danger">
+
+        <h5>
+            🚑 Emergency Priority Active
+        </h5>
+
+        Murree Road currently has an active ambulance.
+        Signal Override Recommended.
+
+    </div>
+
+    <!-- Signal Control Table -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+
+            Manual Signal Management
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Road Name</th>
+                        <th>Traffic Condition</th>
+                        <th>Ambulance</th>
+                        <th>Current Signal</th>
+                        <th>Duration (Seconds)</th>
+                        <th>Manual Control</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="priority-road">
+
+                        <td>Murree Road</td>
+
+                        <td>
+                            <span class="critical">
+                                CRITICAL
+                            </span>
+                        </td>
+
+                        <td>
+                            🚑 YES
+                        </td>
+
+                        <td>
+                            RED
+                        </td>
+
+                        <td>
+
+                            <input type="number"
+                                   class="form-control"
+                                   value="60">
+
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-green">
+                                GREEN
+                            </button>
+
+                            <button class="btn btn-yellow">
+                                YELLOW
+                            </button>
+
+                            <button class="btn btn-red">
+                                RED
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>GT Road</td>
+
+                        <td>
+                            <span class="heavy">
+                                HEAVY
+                            </span>
+                        </td>
+
+                        <td>No</td>
+
+                        <td>GREEN</td>
+
+                        <td>
+
+                            <input type="number"
+                                   class="form-control"
+                                   value="45">
+
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-green">
+                                GREEN
+                            </button>
+
+                            <button class="btn btn-yellow">
+                                YELLOW
+                            </button>
+
+                            <button class="btn btn-red">
+                                RED
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Islamabad Expressway</td>
+
+                        <td>
+                            <span class="high">
+                                HIGH
+                            </span>
+                        </td>
+
+                        <td>No</td>
+
+                        <td>YELLOW</td>
+
+                        <td>
+
+                            <input type="number"
+                                   class="form-control"
+                                   value="35">
+
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-green">
+                                GREEN
+                            </button>
+
+                            <button class="btn btn-yellow">
+                                YELLOW
+                            </button>
+
+                            <button class="btn btn-red">
+                                RED
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Srinagar Highway</td>
+
+                        <td>
+                            <span class="medium">
+                                MEDIUM
+                            </span>
+                        </td>
+
+                        <td>No</td>
+
+                        <td>GREEN</td>
+
+                        <td>
+
+                            <input type="number"
+                                   class="form-control"
+                                   value="25">
+
+                        </td>
+
+                        <td>
+
+                            <button class="btn btn-green">
+                                GREEN
+                            </button>
+
+                            <button class="btn btn-yellow">
+                                YELLOW
+                            </button>
+
+                            <button class="btn btn-red">
+                                RED
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Signal Result Panel -->
+
+    <div class="card">
+
+        <div class="card-header bg-success text-white">
+
+            Signal Update Result
+
+        </div>
+
+        <div class="card-body">
+
+            <h5>
+                Last Action
+            </h5>
+
+            <p>
+
+                Road:
+                Murree Road
+
+            </p>
+
+            <p>
+
+                Signal:
+                GREEN
+
+            </p>
+
+            <p>
+
+                Duration:
+                60 Seconds
+
+            </p>
+
+            <p>
+
+                Status:
+                Updated Successfully
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- VIP Route Control -->
+
+    <div class="card">
+
+        <div class="card-header bg-primary text-white">
+
+            VIP Movement Route Control
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table">
+
+                <tr>
+                    <th>Route</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>Islamabad Expressway</td>
+                    <td>VIP Priority Enabled</td>
+                </tr>
+
+                <tr>
+                    <td>Srinagar Highway</td>
+                    <td>VIP Priority Enabled</td>
+                </tr>
+
+                <tr>
+                    <td>Faisal Avenue</td>
+                    <td>VIP Priority Enabled</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+    </div>
+    ```
+
+</div>

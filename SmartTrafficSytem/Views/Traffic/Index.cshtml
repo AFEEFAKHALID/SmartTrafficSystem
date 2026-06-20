@@ -1,0 +1,251 @@
+﻿@{
+    ViewData["Title"] = "Traffic Monitoring";
+}
+
+<div class="container-fluid">
+
+    
+    <h2 class="mb-4">
+        🚗 Live Traffic Monitoring Center
+    </h2>
+
+    <!-- Summary Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body">
+                    <h5>Total Active Roads</h5>
+                    <h3>15</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-success">
+                <div class="card-body">
+                    <h5>Low Traffic Roads</h5>
+                    <h3>4</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning">
+                <div class="card-body">
+                    <h5>High Traffic Roads</h5>
+                    <h3>6</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger">
+                <div class="card-body">
+                    <h5>Emergency Routes</h5>
+                    <h3>2</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Live Traffic Table -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+
+            Real-Time Road Monitoring
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Road Name</th>
+                        <th>Vehicles</th>
+                        <th>Traffic Condition</th>
+                        <th>Ambulance</th>
+                        <th>Signal Status</th>
+                        <th>Priority</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr class="priority-road">
+
+                        <td>Murree Road</td>
+                        <td>720</td>
+                        <td><span class="critical">CRITICAL</span></td>
+                        <td>🚑 YES</td>
+                        <td>RED</td>
+                        <td>HIGH</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>GT Road</td>
+                        <td>650</td>
+                        <td><span class="heavy">HEAVY</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>MEDIUM</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Islamabad Expressway</td>
+                        <td>540</td>
+                        <td><span class="high">HIGH</span></td>
+                        <td>No</td>
+                        <td>YELLOW</td>
+                        <td>MEDIUM</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Srinagar Highway</td>
+                        <td>420</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Kashmir Highway</td>
+                        <td>390</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>IJP Road</td>
+                        <td>580</td>
+                        <td><span class="heavy">HEAVY</span></td>
+                        <td>No</td>
+                        <td>RED</td>
+                        <td>HIGH</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>9th Avenue</td>
+                        <td>300</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>7th Avenue</td>
+                        <td>270</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Faisal Avenue</td>
+                        <td>500</td>
+                        <td><span class="high">HIGH</span></td>
+                        <td>No</td>
+                        <td>YELLOW</td>
+                        <td>MEDIUM</td>
+
+                    </tr>
+
+                    <tr class="priority-road">
+
+                        <td>Airport Road</td>
+                        <td>470</td>
+                        <td><span class="high">HIGH</span></td>
+                        <td>🚑 YES</td>
+                        <td>GREEN</td>
+                        <td>HIGH</td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Peshawar Road</td>
+                        <td>320</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+                    </tr>
+
+                    <tr>
+                        <td>Mall Road</td>
+                        <td>250</td>
+                        <td><span class="low">LOW</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+                    </tr>
+
+                    <tr>
+                        <td>Jinnah Avenue</td>
+                        <td>450</td>
+                        <td><span class="high">HIGH</span></td>
+                        <td>No</td>
+                        <td>YELLOW</td>
+                        <td>MEDIUM</td>
+                    </tr>
+
+                    <tr>
+                        <td>Club Road</td>
+                        <td>200</td>
+                        <td><span class="low">LOW</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+                    </tr>
+
+                    <tr>
+                        <td>Rawal Road</td>
+                        <td>280</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                        <td>GREEN</td>
+                        <td>LOW</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+    
+
+</div>

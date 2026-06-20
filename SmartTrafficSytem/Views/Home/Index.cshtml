@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        🚦 Smart Traffic Control Center Dashboard
+    </h2>
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="dashboard-card vehicle-card">
+                <h5>Total Vehicles Today</h5>
+                <hr />
+                <p>🚗 Cars : 1,250</p>
+                <p>🏍 Bikes : 2,100</p>
+                <p>🚚 Trucks : 320</p>
+                <p>🚌 Buses : 180</p>
+                <p>🚐 Wagons : 410</p>
+                <p>🛵 Scooties : 890</p>
+                <h4>Total : 5,150</h4>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dashboard-card emergency-card">
+                <h5>🚑 Active Emergency</h5>
+                <hr />
+                <p><strong>Vehicle:</strong> Ambulance</p>
+                <p><strong>Location:</strong> Murree Road</p>
+                <p><strong>Priority:</strong> HIGH</p>
+                <p><strong>Clearance Time:</strong> 02:15 Min</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dashboard-card vip-card">
+                <h5>🚓 VIP Movement</h5>
+                <hr />
+                <p>Islamabad Expressway</p>
+                <p>➡ Srinagar Highway</p>
+                <p>➡ Faisal Avenue</p>
+                <p><strong>ETA:</strong> 15 Minutes</p>
+                <p><strong>Status:</strong> ACTIVE</p>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dashboard-card system-card">
+                <h5>🖥 System Status</h5>
+                <hr />
+                <p>Sensor Network : ONLINE</p>
+                <p>Signal Controllers : ONLINE</p>
+                <p>Emergency Module : ONLINE</p>
+                <p>Database : CONNECTED</p>
+                <p>Last Update : 12:45 PM</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row mt-4">
+
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <h3>🔔</h3>
+                <h5>Notifications</h5>
+                <p>15 Active Alerts</p>
+                <a href="/Notification" class="btn btn-primary">
+                    Open
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <h3>⚠</h3>
+                <h5>Incidents</h5>
+                <p>3 Active Cases</p>
+                <a href="/Incident" class="btn btn-warning">
+                    Open
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <h3>📈</h3>
+                <h5>Predictions</h5>
+                <p>Tomorrow Forecast</p>
+                <a href="/Prediction" class="btn btn-success">
+                    Open
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+                <h3>📄</h3>
+                <h5>Reports</h5>
+                <p>Weekly Reports</p>
+                <a href="/Report" class="btn btn-danger">
+                    Open
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header bg-dark text-white">
+            Traffic Summary
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered">
+
+                <thead>
+                    <tr>
+                        <th>Road Name</th>
+                        <th>Vehicles</th>
+                        <th>Traffic Level</th>
+                        <th>Emergency</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+                        <td>Murree Road</td>
+                        <td>720</td>
+                        <td><span class="critical">CRITICAL</span></td>
+                        <td>🚑 Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>GT Road</td>
+                        <td>600</td>
+                        <td><span class="heavy">HEAVY</span></td>
+                        <td>No</td>
+                    </tr>
+
+                    <tr>
+                        <td>Islamabad Expressway</td>
+                        <td>550</td>
+                        <td><span class="high">HIGH</span></td>
+                        <td>No</td>
+                    </tr>
+
+                    <tr>
+                        <td>Srinagar Highway</td>
+                        <td>410</td>
+                        <td><span class="medium">MEDIUM</span></td>
+                        <td>No</td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+
+        <div class="card-header bg-danger text-white">
+            Top Congested Roads
+        </div>
+
+        <div class="card-body">
+
+            <ol>
+                <li>Murree Road (95%)</li>
+                <li>GT Road (88%)</li>
+                <li>Islamabad Expressway (82%)</li>
+                <li>IJP Road (76%)</li>
+                <li>Srinagar Highway (68%)</li>
+            </ol>
+
+        </div>
+
+    </div>
+
+</div>
