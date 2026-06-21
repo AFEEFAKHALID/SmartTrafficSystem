@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Traffic Heat Map";
+}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        🗺 Traffic Heat Map Dashboard
+    </h2>
+
+    <div class="row">
+
+        @foreach (var road in ViewBag.Roads)
+        {
+            string cardClass = "bg-success";
+
+            if (road.TrafficLevel == "Critical")
+            {
+                cardClass = "bg-danger";
+            }
+            else if (road.TrafficLevel == "Heavy")
+            {
+                cardClass = "bg-dark";
+            }
+            else if (road.TrafficLevel == "High")
+            {
+                cardClass = "bg-warning";
+            }
+            else if (road.TrafficLevel == "Medium")
+            {
+                cardClass = "bg-info";
+            }
+
+            <div class="col-md-3 mb-3">
+
+                <div class="card text-white @cardClass">
+
+                    <div class="card-body">
+
+                        <h5>@road.RoadName</h5>
+
+                        <hr />
+
+                        <p>
+                            Vehicles:
+                            <strong>@road.VehicleCount</strong>
+                        </p>
+
+                        <p>
+                            Status:
+                            <strong>@road.TrafficLevel</strong>
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+    <br />
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+            Traffic Legend
+        </div>
+
+        <div class="card-body">
+
+            <span class="badge bg-danger">
+                Critical
+            </span>
+
+            <span class="badge bg-dark">
+                Heavy
+            </span>
+
+            <span class="badge bg-warning text-dark">
+                High
+            </span>
+
+            <span class="badge bg-info text-dark">
+                Medium
+            </span>
+
+            <span class="badge bg-success">
+                Low
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+<script>
+
+    setInterval(function () {
+
+        location.reload();
+
+    }, 10000);
+
+</script>

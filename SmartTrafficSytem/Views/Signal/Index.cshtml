@@ -4,47 +4,46 @@
 
 <div class="container-fluid">
 
-    ```
     <h2 class="mb-4">
         🚦 Traffic Signal Control Center
     </h2>
 
-    <!-- Control Summary -->
+    <!-- Dashboard Cards -->
 
     <div class="row">
 
         <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <h5>Total Signals</h5>
+                    <h3>@ViewBag.TotalSignals</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
             <div class="card border-success">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5>Green Signals</h5>
-                    <h3>5</h3>
+                    <h3>@ViewBag.GreenSignals</h3>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card border-warning">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5>Yellow Signals</h5>
-                    <h3>3</h3>
+                    <h3>@ViewBag.YellowSignals</h3>
                 </div>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="card border-danger">
-                <div class="card-body">
+                <div class="card-body text-center">
                     <h5>Red Signals</h5>
-                    <h3>7</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3">
-            <div class="card border-primary">
-                <div class="card-body">
-                    <h5>Emergency Routes</h5>
-                    <h3>2</h3>
+                    <h3>@ViewBag.RedSignals</h3>
                 </div>
             </div>
         </div>
@@ -53,213 +52,107 @@
 
     <br />
 
-    <!-- Priority Alert -->
-
-    <div class="alert alert-danger">
-
-        <h5>
-            🚑 Emergency Priority Active
-        </h5>
-
-        Murree Road currently has an active ambulance.
-        Signal Override Recommended.
-
-    </div>
-
-    <!-- Signal Control Table -->
+    <!-- Signal Monitoring Table -->
 
     <div class="card">
 
         <div class="card-header bg-dark text-white">
-
-            Manual Signal Management
-
+            Live Signal Monitoring & Control
         </div>
 
         <div class="card-body">
 
             <table class="table table-bordered table-hover">
 
-                <thead>
+                <thead class="table-dark">
 
                     <tr>
-
+                        <th>Signal ID</th>
                         <th>Road Name</th>
-                        <th>Traffic Condition</th>
-                        <th>Ambulance</th>
-                        <th>Current Signal</th>
-                        <th>Duration (Seconds)</th>
-                        <th>Manual Control</th>
-
+                        <th>Red Duration</th>
+                        <th>Yellow Duration</th>
+                        <th>Green Duration</th>
+                        <th>Status</th>
+                        <th>Control</th>
                     </tr>
 
                 </thead>
 
                 <tbody>
 
-                    <tr class="priority-road">
+                    @foreach (var item in ViewBag.SignalData)
+                    {
+                        <tr>
 
-                        <td>Murree Road</td>
+                            <td>@item.SignalId</td>
 
-                        <td>
-                            <span class="critical">
-                                CRITICAL
-                            </span>
-                        </td>
+                            <td>@item.RoadName</td>
 
-                        <td>
-                            🚑 YES
-                        </td>
+                            <td>@item.RedDuration sec</td>
 
-                        <td>
-                            RED
-                        </td>
+                            <td>@item.YellowDuration sec</td>
 
-                        <td>
+                            <td>@item.GreenDuration sec</td>
 
-                            <input type="number"
-                                   class="form-control"
-                                   value="60">
+                            <td>
 
-                        </td>
+                                @if (item.CurrentStatus == "Green")
+                                {
+                                    <span class="badge bg-success">
+                                        Green
+                                    </span>
+                                }
+                                else if (item.CurrentStatus == "Yellow")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Yellow
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">
+                                        Red
+                                    </span>
+                                }
 
-                        <td>
+                            </td>
 
-                            <button class="btn btn-green">
-                                GREEN
-                            </button>
+                            <td>
 
-                            <button class="btn btn-yellow">
-                                YELLOW
-                            </button>
+                                <form asp-action="UpdateSignal"
+                                      method="post">
 
-                            <button class="btn btn-red">
-                                RED
-                            </button>
+                                    <input type="hidden"
+                                           name="signalId"
+                                           value="@item.SignalId" />
 
-                        </td>
+                                    <button type="submit"
+                                            name="status"
+                                            value="Green"
+                                            class="btn btn-success btn-sm">
+                                        Green
+                                    </button>
 
-                    </tr>
+                                    <button type="submit"
+                                            name="status"
+                                            value="Yellow"
+                                            class="btn btn-warning btn-sm">
+                                        Yellow
+                                    </button>
 
-                    <tr>
+                                    <button type="submit"
+                                            name="status"
+                                            value="Red"
+                                            class="btn btn-danger btn-sm">
+                                        Red
+                                    </button>
 
-                        <td>GT Road</td>
+                                </form>
 
-                        <td>
-                            <span class="heavy">
-                                HEAVY
-                            </span>
-                        </td>
+                            </td>
 
-                        <td>No</td>
-
-                        <td>GREEN</td>
-
-                        <td>
-
-                            <input type="number"
-                                   class="form-control"
-                                   value="45">
-
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-green">
-                                GREEN
-                            </button>
-
-                            <button class="btn btn-yellow">
-                                YELLOW
-                            </button>
-
-                            <button class="btn btn-red">
-                                RED
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Islamabad Expressway</td>
-
-                        <td>
-                            <span class="high">
-                                HIGH
-                            </span>
-                        </td>
-
-                        <td>No</td>
-
-                        <td>YELLOW</td>
-
-                        <td>
-
-                            <input type="number"
-                                   class="form-control"
-                                   value="35">
-
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-green">
-                                GREEN
-                            </button>
-
-                            <button class="btn btn-yellow">
-                                YELLOW
-                            </button>
-
-                            <button class="btn btn-red">
-                                RED
-                            </button>
-
-                        </td>
-
-                    </tr>
-
-                    <tr>
-
-                        <td>Srinagar Highway</td>
-
-                        <td>
-                            <span class="medium">
-                                MEDIUM
-                            </span>
-                        </td>
-
-                        <td>No</td>
-
-                        <td>GREEN</td>
-
-                        <td>
-
-                            <input type="number"
-                                   class="form-control"
-                                   value="25">
-
-                        </td>
-
-                        <td>
-
-                            <button class="btn btn-green">
-                                GREEN
-                            </button>
-
-                            <button class="btn btn-yellow">
-                                YELLOW
-                            </button>
-
-                            <button class="btn btn-red">
-                                RED
-                            </button>
-
-                        </td>
-
-                    </tr>
+                        </tr>
+                    }
 
                 </tbody>
 
@@ -271,95 +164,81 @@
 
     <br />
 
-    <!-- Signal Result Panel -->
+    <!-- Signal Status Pie Chart -->
 
     <div class="card">
 
-        <div class="card-header bg-success text-white">
-
-            Signal Update Result
-
+        <div class="card-header bg-dark text-white">
+            Signal Status Distribution
         </div>
 
         <div class="card-body">
 
-            <h5>
-                Last Action
-            </h5>
-
-            <p>
-
-                Road:
-                Murree Road
-
-            </p>
-
-            <p>
-
-                Signal:
-                GREEN
-
-            </p>
-
-            <p>
-
-                Duration:
-                60 Seconds
-
-            </p>
-
-            <p>
-
-                Status:
-                Updated Successfully
-
-            </p>
+            <canvas id="signalPieChart"></canvas>
 
         </div>
 
     </div>
-
-    <br />
-
-    <!-- VIP Route Control -->
-
-    <div class="card">
-
-        <div class="card-header bg-primary text-white">
-
-            VIP Movement Route Control
-
-        </div>
-
-        <div class="card-body">
-
-            <table class="table">
-
-                <tr>
-                    <th>Route</th>
-                    <th>Status</th>
-                </tr>
-
-                <tr>
-                    <td>Islamabad Expressway</td>
-                    <td>VIP Priority Enabled</td>
-                </tr>
-
-                <tr>
-                    <td>Srinagar Highway</td>
-                    <td>VIP Priority Enabled</td>
-                </tr>
-
-                <tr>
-                    <td>Faisal Avenue</td>
-                    <td>VIP Priority Enabled</td>
-                </tr>
-
-            </table>
-
-        </div>
-
-    </div>
-    ```
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    new Chart(
+        document.getElementById('signalPieChart'),
+        {
+            type: 'pie',
+
+            data:
+            {
+                labels:
+                    [
+                        'Green',
+                        'Yellow',
+                        'Red'
+                    ],
+
+                datasets:
+                    [{
+                        data:
+                            [
+    @ViewBag.GreenSignals,
+    @ViewBag.YellowSignals,
+    @ViewBag.RedSignals
+                    ],
+
+                        backgroundColor:
+                            [
+                                '#198754',
+                                '#ffc107',
+                                '#dc3545'
+                            ]
+                    }]
+            },
+
+            options:
+            {
+                responsive: true,
+
+                plugins:
+                {
+                    legend:
+                    {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+</script>
+<script>
+
+    setInterval(function () {
+
+        location.reload();
+
+    }, 5000);
+
+</script>

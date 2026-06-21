@@ -2,48 +2,174 @@
     ViewData["Title"] = "Traffic Prediction";
 }
 
-<h2>📈 Traffic Prediction Center</h2>
+<div class="container-fluid">
 
-<div class="card">
+    <h2 class="mb-4">
+        📈 Traffic Prediction Center
+    </h2>
 
-    
-    <div class="card-header bg-success text-white">
+    <!-- Summary Cards -->
 
-        Tomorrow Traffic Forecast
+    <div class="row">
+
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <h5>Total Roads Analyzed</h5>
+                    <h3>@ViewBag.TotalPredictions</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card border-danger">
+                <div class="card-body text-center">
+                    <h5>High Risk Roads</h5>
+                    <h3>@ViewBag.HighRiskRoads</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Prediction Table -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+            Next Hour Traffic Forecast
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Road Name</th>
+                        <th>Current Traffic</th>
+                        <th>Predicted Traffic</th>
+                        <th>Risk Level</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in ViewBag.Predictions)
+                    {
+                        <tr>
+
+                            <td>@item.RoadName</td>
+
+                            <td>@item.CurrentTraffic</td>
+
+                            <td>@item.PredictedTraffic</td>
+
+                            <td>
+
+                                @if (item.RiskLevel == "High Risk")
+                                {
+                                    <span class="badge bg-danger">
+                                        High Risk
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        Normal
+                                    </span>
+                                }
+
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-    <div class="card-body">
+    <br />
 
-        <table class="table table-bordered">
+    <!-- Prediction Chart -->
 
-            <tr>
-                <th>Road</th>
-                <th>Predicted Vehicles</th>
-                <th>Forecast</th>
-            </tr>
+    <div class="card">
 
-            <tr>
-                <td>Murree Road</td>
-                <td>950</td>
-                <td>Critical</td>
-            </tr>
+        <div class="card-header bg-dark text-white">
+            Current vs Predicted Traffic
+        </div>
 
-            <tr>
-                <td>GT Road</td>
-                <td>850</td>
-                <td>Heavy</td>
-            </tr>
+        <div class="card-body">
 
-            <tr>
-                <td>Islamabad Expressway</td>
-                <td>720</td>
-                <td>High</td>
-            </tr>
+            <canvas id="predictionChart"></canvas>
 
-        </table>
+        </div>
 
     </div>
-    
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    var roadNames = [
+    @foreach (var road in ViewBag.RoadNames)
+    {
+        <text>'@road', </text>
+    }
+        ];
+
+    var currentTraffic = [
+    @foreach (var count in ViewBag.CurrentTraffic)
+    {
+        <text>@count, </text>
+    }
+        ];
+
+    var predictedTraffic = [
+    @foreach (var count in ViewBag.PredictedTraffic)
+    {
+        <text>@count, </text>
+    }
+        ];
+
+    new Chart(
+        document.getElementById('predictionChart'),
+        {
+            type: 'bar',
+
+            data:
+            {
+                labels: roadNames,
+
+                datasets:
+                    [
+                        {
+                            label: 'Current Traffic',
+                            data: currentTraffic,
+                            backgroundColor: '#0d6efd'
+                        },
+                        {
+                            label: 'Predicted Traffic',
+                            data: predictedTraffic,
+                            backgroundColor: '#dc3545'
+                        }
+                    ]
+            },
+
+            options:
+            {
+                responsive: true
+            }
+        });
+
+</script>

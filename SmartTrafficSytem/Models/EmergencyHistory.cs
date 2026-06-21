@@ -1,15 +1,14 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SmartTrafficSystem.Models
 {
-    [Table("emergencies")]
-    public class Emergency
+    [Table("emergency_history")]
+    public class EmergencyHistory
     {
         [Key]
-        [Column("emergency_id")]
-        public int EmergencyId { get; set; }
+        [Column("history_id")]
+        public int HistoryId { get; set; }
 
         [Column("road_id")]
         public int RoadId { get; set; }
@@ -23,7 +22,7 @@ namespace SmartTrafficSystem.Models
         [Column("status")]
         public string? Status { get; set; }
 
-        [Column("created_at")]
-        public DateTime CreatedAt { get; set; }
+        [Column("completed_at")]
+        public DateTime CompletedAt { get; set; }
     }
 }

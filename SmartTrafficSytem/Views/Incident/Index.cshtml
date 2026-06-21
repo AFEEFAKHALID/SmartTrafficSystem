@@ -1,53 +1,153 @@
 ﻿@{
-    ViewData["Title"] = "Incidents";
+    ViewData["Title"] = "Incident Management";
 }
 
-<h2>⚠ Incident Management Center</h2>
+<div class="container-fluid">
 
-<div class="card">
+    <h2 class="mb-4">
+        ⚠ Incident Management Center
+    </h2>
 
-    
-    <div class="card-header bg-warning">
+    <!-- Dashboard Cards -->
 
-        Active Incidents
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <h5>Total Incidents</h5>
+                    <h3>@ViewBag.TotalIncidents</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning">
+                <div class="card-body text-center">
+                    <h5>Open Incidents</h5>
+                    <h3>@ViewBag.OpenIncidents</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-success">
+                <div class="card-body text-center">
+                    <h5>Resolved</h5>
+                    <h3>@ViewBag.ResolvedIncidents</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger">
+                <div class="card-body text-center">
+                    <h5>Critical</h5>
+                    <h3>@ViewBag.CriticalIncidents</h3>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <div class="card-body">
+    <br />
 
-        <table class="table table-bordered">
+    <!-- Incident Table -->
 
-            <tr>
-                <th>Incident</th>
-                <th>Road</th>
-                <th>Severity</th>
-                <th>Status</th>
-            </tr>
+    <div class="card">
 
-            <tr>
-                <td>Accident</td>
-                <td>GT Road</td>
-                <td>Critical</td>
-                <td>Active</td>
-            </tr>
+        <div class="card-header bg-warning">
+            Active Incident Monitoring
+        </div>
 
-            <tr>
-                <td>Road Construction</td>
-                <td>IJP Road</td>
-                <td>Medium</td>
-                <td>Ongoing</td>
-            </tr>
+        <div class="card-body">
 
-            <tr>
-                <td>Flooding</td>
-                <td>Murree Road</td>
-                <td>High</td>
-                <td>Under Review</td>
-            </tr>
+            <table class="table table-bordered table-hover">
 
-        </table>
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Incident Type</th>
+                        <th>Road</th>
+                        <th>Severity</th>
+                        <th>Status</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in ViewBag.Incidents)
+                    {
+                        <tr>
+
+                            <td>@item.IncidentType</td>
+
+                            <td>@item.RoadName</td>
+
+                            <td>
+
+                                @if (item.Severity == "Critical")
+                                {
+                                    <span class="badge bg-danger">
+                                        Critical
+                                    </span>
+                                }
+                                else if (item.Severity == "High")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        High
+                                    </span>
+                                }
+                                else if (item.Severity == "Medium")
+                                {
+                                    <span class="badge bg-info text-dark">
+                                        Medium
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        Low
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                @if (item.Status == "Open")
+                                {
+                                    <span class="badge bg-danger">
+                                        Open
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        Resolved
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>@item.Description</td>
+
+                            <td>
+                                @item.CreatedAt.ToString("dd-MMM-yyyy")
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
-    
 
 </div>

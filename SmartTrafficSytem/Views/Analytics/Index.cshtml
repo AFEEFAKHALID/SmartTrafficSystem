@@ -1,68 +1,49 @@
 ﻿@{
-    ViewData["Title"] = "Traffic Analytics";
+    ViewData["Title"] = "Analytics Dashboard";
 }
 
 <div class="container-fluid">
 
-    
     <h2 class="mb-4">
-        📊 Traffic Analytics & Reporting Center
+        📊 Smart Traffic Analytics Dashboard
     </h2>
 
-    <!-- KPI CARDS -->
+    <!-- Main Dashboard Cards -->
 
     <div class="row">
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card border-primary">
                 <div class="card-body text-center">
-                    <h6>Total Vehicles</h6>
-                    <h3>5,150</h3>
+                    <h5>Total Roads</h5>
+                    <h3>@ViewBag.TotalRoads</h3>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card border-success">
                 <div class="card-body text-center">
-                    <h6>Peak Hour</h6>
-                    <h3>08:00 AM</h3>
+                    <h5>Total Vehicles</h5>
+                    <h3>@ViewBag.TotalVehicles</h3>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card border-danger">
                 <div class="card-body text-center">
-                    <h6>Emergencies</h6>
-                    <h3>12</h3>
+                    <h5>Emergencies</h5>
+                    <h3>@ViewBag.TotalEmergencies</h3>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-2">
+        <div class="col-md-3">
             <div class="card border-warning">
                 <div class="card-body text-center">
-                    <h6>VIP Movements</h6>
-                    <h3>4</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card border-info">
-                <div class="card-body text-center">
-                    <h6>Avg Delay</h6>
-                    <h3>42 Sec</h3>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-2">
-            <div class="card border-dark">
-                <div class="card-body text-center">
-                    <h6>Active Roads</h6>
-                    <h3>15</h3>
+                    <h5>Signals</h5>
+                    <h3>@ViewBag.TotalSignals</h3>
                 </div>
             </div>
         </div>
@@ -71,163 +52,130 @@
 
     <br />
 
-    <!-- CHARTS ROW 1 -->
+    <!-- Analytics Cards -->
 
     <div class="row">
 
-        <div class="col-md-6">
-
-            <div class="card">
-
-                <div class="card-header bg-primary text-white">
-
-                    Traffic Trend Analysis
-
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body text-center">
+                    <h6>Most Congested Road</h6>
+                    <h4>@ViewBag.TopRoad</h4>
                 </div>
-
-                <div class="card-body">
-
-                    <canvas id="trafficTrendChart"></canvas>
-
-                </div>
-
             </div>
-
         </div>
 
-        <div class="col-md-6">
-
-            <div class="card">
-
-                <div class="card-header bg-success text-white">
-
-                    Vehicle Distribution
-
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h6>Fastest Road</h6>
+                    <h4>@ViewBag.FastestRoad</h4>
                 </div>
-
-                <div class="card-body">
-
-                    <canvas id="vehicleChart"></canvas>
-
-                </div>
-
             </div>
+        </div>
 
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h6>Average Speed</h6>
+                    <h4>@ViewBag.AverageSpeed km/h</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body text-center">
+                    <h6>Most Common Traffic</h6>
+                    <h4>@ViewBag.MostCommonTraffic</h4>
+                </div>
+            </div>
         </div>
 
     </div>
 
     <br />
 
-    <!-- CHARTS ROW 2 -->
-
-    <div class="row">
-
-        <div class="col-md-6">
-
-            <div class="card">
-
-                <div class="card-header bg-danger text-white">
-
-                    Top Congested Roads
-
-                </div>
-
-                <div class="card-body">
-
-                    <canvas id="congestionChart"></canvas>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-md-6">
-
-            <div class="card">
-
-                <div class="card-header bg-warning text-dark">
-
-                    Emergency Trends
-
-                </div>
-
-                <div class="card-body">
-
-                    <canvas id="emergencyChart"></canvas>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-    <br />
-
-    <!-- REPORT TABLE -->
+    <!-- Vehicle Count Chart -->
 
     <div class="card">
 
         <div class="card-header bg-dark text-white">
+            Vehicle Count by Road
+        </div>
 
-            Daily Traffic Report
+        <div class="card-body">
+            <canvas id="vehicleChart"></canvas>
+        </div>
 
+    </div>
+
+    <br />
+
+    <!-- Traffic Distribution Chart -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+            Traffic Level Distribution
+        </div>
+
+        <div class="card-body">
+            <canvas id="trafficPieChart"></canvas>
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Emergency Distribution -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+            Emergency Vehicle Distribution
+        </div>
+
+        <div class="card-body">
+            <canvas id="emergencyChart"></canvas>
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Top Roads Table -->
+
+    <div class="card">
+
+        <div class="card-header bg-danger text-white">
+            Top 5 Congested Roads
         </div>
 
         <div class="card-body">
 
-            <table class="table table-bordered">
+            <table class="table table-striped table-hover">
 
-                <thead>
+                <thead class="table-dark">
 
                     <tr>
-
                         <th>Road Name</th>
-                        <th>Vehicles</th>
+                        <th>Vehicle Count</th>
                         <th>Traffic Level</th>
-                        <th>Emergency Events</th>
-                        <th>Avg Signal Delay</th>
-
                     </tr>
 
                 </thead>
 
                 <tbody>
 
-                    <tr>
-                        <td>Murree Road</td>
-                        <td>720</td>
-                        <td>Critical</td>
-                        <td>3</td>
-                        <td>65 Sec</td>
-                    </tr>
-
-                    <tr>
-                        <td>GT Road</td>
-                        <td>650</td>
-                        <td>Heavy</td>
-                        <td>2</td>
-                        <td>55 Sec</td>
-                    </tr>
-
-                    <tr>
-                        <td>Islamabad Expressway</td>
-                        <td>540</td>
-                        <td>High</td>
-                        <td>1</td>
-                        <td>42 Sec</td>
-                    </tr>
-
-                    <tr>
-                        <td>Srinagar Highway</td>
-                        <td>420</td>
-                        <td>Medium</td>
-                        <td>0</td>
-                        <td>25 Sec</td>
-                    </tr>
+                    @foreach (var item in ViewBag.TopRoads)
+                    {
+                        <tr>
+                            <td>@item.RoadName</td>
+                            <td>@item.VehicleCount</td>
+                            <td>@item.TrafficLevel</td>
+                        </tr>
+                    }
 
                 </tbody>
 
@@ -236,94 +184,206 @@
         </div>
 
     </div>
-    
+
+    <br />
+
+    <!-- Analytics Summary -->
+
+    <div class="card">
+
+        <div class="card-header bg-primary text-white">
+            Analytics Summary
+        </div>
+
+        <div class="card-body">
+
+            <ul class="list-group">
+
+                <li class="list-group-item">
+                    Most Congested Road:
+                    <strong>@ViewBag.TopRoad</strong>
+                </li>
+
+                <li class="list-group-item">
+                    Fastest Road:
+                    <strong>@ViewBag.FastestRoad</strong>
+                </li>
+
+                <li class="list-group-item">
+                    Average Speed:
+                    <strong>@ViewBag.AverageSpeed km/h</strong>
+                </li>
+
+                <li class="list-group-item">
+                    Total Emergencies:
+                    <strong>@ViewBag.TotalEmergencies</strong>
+                </li>
+
+                <li class="list-group-item">
+                    Most Common Traffic Level:
+                    <strong>@ViewBag.MostCommonTraffic</strong>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
 
 </div>
 
-@section Scripts{
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
 
-    <script>
+    var roadNames = [
+    @if (ViewBag.RoadNames != null)
+    {
+        foreach (var road in ViewBag.RoadNames)
+        {
+            <text>'@road', </text>
+        }
+    }
+        ];
 
-        // Traffic Trend Chart
+    var vehicleCounts = [
+    @if (ViewBag.VehicleCounts != null)
+    {
+        foreach (var count in ViewBag.VehicleCounts)
+        {
+            <text>@count, </text>
+        }
+    }
+        ];
 
-        new Chart(
-            document.getElementById('trafficTrendChart'),
+    // Vehicle Chart
+
+    new Chart(
+        document.getElementById('vehicleChart'),
+        {
+            type: 'bar',
+
+            data:
             {
-                type: 'line',
+                labels: roadNames,
 
-                data: {
-                    labels: ['6 AM', '7 AM', '8 AM', '9 AM', '10 AM', '11 AM', '12 PM'],
-                    datasets: [{
-                        label: 'Vehicles',
-                        data: [200, 450, 900, 1200, 950, 800, 700],
-                        borderWidth: 3
+                datasets:
+                    [{
+                        label: 'Vehicle Count',
+
+                        data: vehicleCounts,
+
+                        backgroundColor:
+                            [
+                                '#0d6efd',
+                                '#198754',
+                                '#ffc107',
+                                '#dc3545',
+                                '#6f42c1',
+                                '#20c997',
+                                '#fd7e14',
+                                '#6610f2'
+                            ]
                     }]
-                }
-            });
+            },
 
-        // Vehicle Distribution
-
-        new Chart(
-            document.getElementById('vehicleChart'),
+            options:
             {
-                type: 'pie',
-
-                data: {
-                    labels: ['Cars', 'Bikes', 'Trucks', 'Buses', 'Wagons', 'Scooties'],
-                    datasets: [{
-                        data: [1250, 2100, 320, 180, 410, 890]
-                    }]
+                responsive: true,
+                plugins:
+                {
+                    legend:
+                    {
+                        display: false
+                    }
                 }
-            });
+            }
+        });
 
-        // Congested Roads
+    // Traffic Distribution
 
-        new Chart(
-            document.getElementById('congestionChart'),
+    new Chart(
+        document.getElementById('trafficPieChart'),
+        {
+            type: 'pie',
+
+            data:
             {
-                type: 'bar',
-
-                data: {
-                    labels: [
-                        'Murree',
-                        'GT',
-                        'IJP',
-                        'Expressway',
-                        'Srinagar'
+                labels:
+                    [
+                        'Critical',
+                        'Heavy',
+                        'High',
+                        'Medium',
+                        'Low'
                     ],
-                    datasets: [{
-                        label: 'Congestion %',
-                        data: [95, 88, 82, 76, 68]
+
+                datasets:
+                    [{
+                        data:
+                            [
+    @ViewBag.CriticalCount,
+    @ViewBag.HeavyCount,
+    @ViewBag.HighCount,
+    @ViewBag.MediumCount,
+    @ViewBag.LowCount
+                        ],
+
+                        backgroundColor:
+                            [
+                                '#dc3545',
+                                '#198754',
+                                '#ffc107',
+                                '#0dcaf0',
+                                '#6c757d'
+                            ]
                     }]
-                }
-            });
+            }
+        });
 
-        // Emergency Trends
+    // Emergency Chart
 
-        new Chart(
-            document.getElementById('emergencyChart'),
+    new Chart(
+        document.getElementById('emergencyChart'),
+        {
+            type: 'doughnut',
+
+            data:
             {
-                type: 'line',
-
-                data: {
-                    labels: [
-                        'Mon',
-                        'Tue',
-                        'Wed',
-                        'Thu',
-                        'Fri',
-                        'Sat',
-                        'Sun'
+                labels:
+                    [
+                        'Ambulance',
+                        'Fire Brigade'
                     ],
-                    datasets: [{
-                        label: 'Emergency Events',
-                        data: [2, 4, 3, 5, 2, 6, 4]
+
+                datasets:
+                    [{
+                        data:
+                            [
+    @ViewBag.AmbulanceCount,
+    @ViewBag.FireBrigadeCount
+                        ],
+
+                        backgroundColor:
+                            [
+                                '#198754',
+                                '#dc3545'
+                            ]
                     }]
+            },
+
+            options:
+            {
+                responsive: true,
+
+                plugins:
+                {
+                    legend:
+                    {
+                        position: 'bottom'
+                    }
                 }
-            });
+            }
+        });
 
-    </script>
-
-}
+</script>

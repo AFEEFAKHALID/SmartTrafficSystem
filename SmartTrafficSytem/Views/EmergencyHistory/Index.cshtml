@@ -1,0 +1,168 @@
+﻿@{
+    ViewData["Title"] = "Emergency Route History";
+}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        🚑 Emergency Route History
+    </h2>
+
+    <!-- Summary Card -->
+
+    <div class="card border-danger">
+
+        <div class="card-body text-center">
+
+            <h5>Total Emergency Routes</h5>
+
+            <h2>@ViewBag.TotalHistory</h2>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- History Table -->
+
+    <div class="card">
+
+        <div class="card-header bg-danger text-white">
+
+            Emergency Route Activity History
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+
+                        <th>Road Name</th>
+
+                        <th>Vehicle Type</th>
+
+                        <th>Priority Level</th>
+
+                        <th>Status</th>
+
+                        <th>Completed Date</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in ViewBag.History)
+                    {
+                        <tr>
+
+                            <td>
+                                @item.RoadName
+                            </td>
+
+                            <td>
+                                @item.VehicleType
+                            </td>
+
+                            <td>
+
+                                @if (item.PriorityLevel == "Critical")
+                                {
+                                    <span class="badge bg-danger">
+                                        Critical
+                                    </span>
+                                }
+                                else if (item.PriorityLevel == "High")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        High
+                                    </span>
+                                }
+                                else if (item.PriorityLevel == "Medium")
+                                {
+                                    <span class="badge bg-info text-dark">
+                                        Medium
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        Low
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+
+                                @if (item.Status == "Completed")
+                                {
+                                    <span class="badge bg-success">
+                                        Completed
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger">
+                                        Active
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                @item.CompletedAt.ToString("dd-MMM-yyyy HH:mm")
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Legend -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+
+            Priority Legend
+
+        </div>
+
+        <div class="card-body">
+
+            <span class="badge bg-danger">
+                Critical
+            </span>
+
+            <span class="badge bg-warning text-dark">
+                High
+            </span>
+
+            <span class="badge bg-info text-dark">
+                Medium
+            </span>
+
+            <span class="badge bg-success">
+                Low
+            </span>
+
+        </div>
+
+    </div>
+
+</div>

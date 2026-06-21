@@ -1,57 +1,97 @@
 ﻿@{
     ViewData["Title"] = "Dashboard";
 }
+
 <div class="alert alert-success mb-3">
-    🚦 Database Connected Successfully |
-    Roads Loaded: <strong>@ViewBag.RoadCount</strong>
+    🚦 Database Connected Successfully
 </div>
-<div class="alert alert-success">
-    Database Connected Successfully |
-    Roads Loaded: <strong>@ViewBag.RoadCount</strong>
-</div>
+
+<h1>Smart Traffic Control Center Dashboard</h1>
 
 <div class="container-fluid">
 
-    <h2 class="mb-4">
-        🚦 Smart Traffic Control Center Dashboard
-    </h2>
-
+   
+    
     <div class="row">
 
         <div class="col-md-3">
             <div class="dashboard-card vehicle-card">
                 <h5>Total Vehicles Today</h5>
                 <hr />
-                <p>🚗 Cars : 1,250</p>
-                <p>🏍 Bikes : 2,100</p>
-                <p>🚚 Trucks : 320</p>
-                <p>🚌 Buses : 180</p>
-                <p>🚐 Wagons : 410</p>
-                <p>🛵 Scooties : 890</p>
-                <h4>Total : 5,150</h4>
+
+                <p>🚗 Cars : @ViewBag.CarCount</p>
+                <p>🏍 Bikes : @ViewBag.BikeCount</p>
+                <p>🚚 Trucks : @ViewBag.TruckCount</p>
+                <p>🚌 Buses : @ViewBag.BusCount</p>
+                <p>🛵 Scooties : @ViewBag.ScootyCount</p>
+
+                <h4>Total : @ViewBag.TotalVehicles</h4>
             </div>
         </div>
 
         <div class="col-md-3">
             <div class="dashboard-card emergency-card">
-                <h5>🚑 Active Emergency</h5>
+
+                <h5>🚦 Emergency Route Status</h5>
+
                 <hr />
-                <p><strong>Vehicle:</strong> Ambulance</p>
-                <p><strong>Location:</strong> Murree Road</p>
-                <p><strong>Priority:</strong> HIGH</p>
-                <p><strong>Clearance Time:</strong> 02:15 Min</p>
+
+                @if (ViewBag.EmergencyAlert == true)
+                {
+                    <p>
+                        <strong>Priority Route:</strong><br />
+                        @ViewBag.EmergencyRoad
+                    </p>
+
+                    <p>
+                        <strong>Emergency Vehicle:</strong><br />
+                        @ViewBag.EmergencyVehicle
+                    </p>
+
+                    <p>
+                        <strong>Signal Status:</strong><br />
+                        GREEN Corridor Active
+                    </p>
+
+                    <p>
+                        <strong>Override Mode:</strong><br />
+                        ENABLED
+                    </p>
+
+                    <span class="badge bg-success">
+                        Emergency Corridor Open
+                    </span>
+                }
+                else
+                {
+                    <p>
+                        No Emergency Route Active
+                    </p>
+
+                    <span class="badge bg-secondary">
+                        Normal Traffic Flow
+                    </span>
+                }
+
             </div>
         </div>
-
         <div class="col-md-3">
             <div class="dashboard-card vip-card">
-                <h5>🚓 VIP Movement</h5>
+                <h5>🚦 Traffic Signals</h5>
                 <hr />
-                <p>Islamabad Expressway</p>
-                <p>➡ Srinagar Highway</p>
-                <p>➡ Faisal Avenue</p>
-                <p><strong>ETA:</strong> 15 Minutes</p>
-                <p><strong>Status:</strong> ACTIVE</p>
+
+                @if (ViewBag.LatestSignal != null)
+                {
+                    <p><strong>Total Signals:</strong> @ViewBag.SignalCount</p>
+                    <p><strong>Green:</strong> @ViewBag.LatestSignal.GreenDuration sec</p>
+                    <p><strong>Yellow:</strong> @ViewBag.LatestSignal.YellowDuration sec</p>
+                    <p><strong>Red:</strong> @ViewBag.LatestSignal.RedDuration sec</p>
+                    <p><strong>Status:</strong> @ViewBag.LatestSignal.CurrentStatus</p>
+                }
+                else
+                {
+                    <p>No signal data found.</p>
+                }
             </div>
         </div>
 
@@ -59,16 +99,81 @@
             <div class="dashboard-card system-card">
                 <h5>🖥 System Status</h5>
                 <hr />
-                <p>Sensor Network : ONLINE</p>
-                <p>Signal Controllers : ONLINE</p>
-                <p>Emergency Module : ONLINE</p>
-                <p>Database : CONNECTED</p>
-                <p>Last Update : 12:45 PM</p>
+
+                <p><strong>Roads:</strong> @ViewBag.RoadCount</p>
+                <p><strong>Traffic Records:</strong> @ViewBag.TrafficCount</p>
+                <p><strong>Emergencies:</strong> @ViewBag.EmergencyCount</p>
+                <p><strong>Database:</strong> CONNECTED</p>
             </div>
         </div>
 
     </div>
+    @if (ViewBag.EmergencyAlert == true)
+    {
+        <br />
 
+        <div class="card border-danger">
+
+            <div class="card-header bg-danger text-white">
+
+                🚑 Emergency Priority Route
+
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-bordered">
+
+                    <thead>
+
+                        <tr>
+                            <th>Road</th>
+                            <th>Emergency Vehicle</th>
+                            <th>Priority</th>
+                            <th>Signal Status</th>
+                            <th>Route Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                @ViewBag.EmergencyRoad
+                            </td>
+
+                            <td>
+                                @ViewBag.EmergencyVehicle
+                            </td>
+
+                            <td>
+                                @ViewBag.EmergencyPriority
+                            </td>
+
+                            <td>
+                                <span class="badge bg-success">
+                                    GREEN
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-danger">
+                                    Activated
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+    }
     <div class="row mt-4">
 
         <div class="col-md-3">
@@ -114,6 +219,42 @@
                 </a>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+
+                <h3>🚦</h3>
+
+                <h5>Signal Logs</h5>
+
+                <p>Signal History</p>
+
+                <a href="/SignalLog"
+                   class="btn btn-info">
+
+                    Open
+
+                </a>
+
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center p-3">
+
+                <h3>🚑</h3>
+
+                <h5>Emergency History</h5>
+
+                <p>Completed Routes</p>
+
+                <a href="/EmergencyHistory"
+                   class="btn btn-danger">
+
+                    Open
+
+                </a>
+
+            </div>
+        </div>
 
     </div>
 
@@ -130,41 +271,36 @@
 
                 <thead>
                     <tr>
-                        <th>Road Name</th>
-                        <th>Vehicles</th>
-                        <th>Traffic Level</th>
-                        <th>Emergency</th>
+                        <th>Metric</th>
+                        <th>Count</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr>
-                        <td>Murree Road</td>
-                        <td>720</td>
-                        <td><span class="critical">CRITICAL</span></td>
-                        <td>🚑 Yes</td>
+                        <td>Total Roads</td>
+                        <td>@ViewBag.RoadCount</td>
                     </tr>
 
                     <tr>
-                        <td>GT Road</td>
-                        <td>600</td>
-                        <td><span class="heavy">HEAVY</span></td>
-                        <td>No</td>
+                        <td>Total Vehicles</td>
+                        <td>@ViewBag.TotalVehicles</td>
                     </tr>
 
                     <tr>
-                        <td>Islamabad Expressway</td>
-                        <td>550</td>
-                        <td><span class="high">HIGH</span></td>
-                        <td>No</td>
+                        <td>Total Emergencies</td>
+                        <td>@ViewBag.EmergencyCount</td>
                     </tr>
 
                     <tr>
-                        <td>Srinagar Highway</td>
-                        <td>410</td>
-                        <td><span class="medium">MEDIUM</span></td>
-                        <td>No</td>
+                        <td>Total Signals</td>
+                        <td>@ViewBag.SignalCount</td>
+                    </tr>
+
+                    <tr>
+                        <td>Traffic Records</td>
+                        <td>@ViewBag.TrafficCount</td>
                     </tr>
 
                 </tbody>
@@ -172,28 +308,17 @@
             </table>
 
         </div>
-    </div>
-
-    <br />
-
-    <div class="card">
-
-        <div class="card-header bg-danger text-white">
-            Top Congested Roads
-        </div>
-
-        <div class="card-body">
-
-            <ol>
-                <li>Murree Road (95%)</li>
-                <li>GT Road (88%)</li>
-                <li>Islamabad Expressway (82%)</li>
-                <li>IJP Road (76%)</li>
-                <li>Srinagar Highway (68%)</li>
-            </ol>
-
-        </div>
 
     </div>
+   
 
 </div>
+<script>
+
+    setInterval(function () {
+
+        location.reload();
+
+    }, 10000);
+
+</script>

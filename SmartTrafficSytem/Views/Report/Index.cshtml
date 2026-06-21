@@ -1,67 +1,304 @@
 ﻿@{
-    ViewData["Title"] = "Reports";
+    ViewData["Title"] = "Traffic Reports";
 }
 
-<h2>📄 Traffic Reports Center</h2>
+<div class="container-fluid">
 
-<div class="mb-3">
+    <h2 class="mb-4">
+        📄 Smart Traffic Reports Dashboard
+    </h2>
 
-    
-    <button class="btn btn-danger">
-        Export PDF
-    </button>
+    <!-- Main Cards -->
 
-    <button class="btn btn-success">
-        Export Excel
-    </button>
+    <div class="row">
 
-    <button class="btn btn-primary">
-        Print Report
-    </button>
-    
+        <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <h5>Total Roads</h5>
+                    <h3>@ViewBag.TotalRoads</h3>
+                </div>
+            </div>
+        </div>
 
-</div>
+        <div class="col-md-3">
+            <div class="card border-success">
+                <div class="card-body text-center">
+                    <h5>Total Vehicles</h5>
+                    <h3>@ViewBag.TotalVehicles</h3>
+                </div>
+            </div>
+        </div>
 
-<div class="card">
+        <div class="col-md-3">
+            <div class="card border-warning">
+                <div class="card-body text-center">
+                    <h5>Total Signals</h5>
+                    <h3>@ViewBag.TotalSignals</h3>
+                </div>
+            </div>
+        </div>
 
-    
-    <div class="card-header bg-dark text-white">
+        <div class="col-md-3">
+            <div class="card border-danger">
+                <div class="card-body text-center">
+                    <h5>Total Emergencies</h5>
+                    <h3>@ViewBag.TotalEmergencies</h3>
+                </div>
+            </div>
+        </div>
 
-        Weekly Report
+    </div>
+
+    <br />
+
+    <!-- Analytics Cards -->
+
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card bg-danger text-white">
+                <div class="card-body text-center">
+                    <h6>Most Congested Road</h6>
+                    <h4>@ViewBag.TopRoad</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body text-center">
+                    <h6>Fastest Road</h6>
+                    <h4>@ViewBag.FastestRoad</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-warning text-dark">
+                <div class="card-body text-center">
+                    <h6>Average Speed</h6>
+                    <h4>@ViewBag.AverageSpeed km/h</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card bg-info text-white">
+                <div class="card-body text-center">
+                    <h6>Active Routes</h6>
+                    <h4>@ViewBag.ActiveEmergencyRoutes</h4>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <div class="card-body">
+    <br />
 
-        <table class="table table-bordered">
+    <!-- Vehicle Chart -->
 
-            <tr>
-                <th>Road</th>
-                <th>Total Vehicles</th>
-                <th>Emergencies</th>
-            </tr>
+    <div class="card">
 
-            <tr>
-                <td>Murree Road</td>
-                <td>4500</td>
-                <td>5</td>
-            </tr>
+        <div class="card-header bg-dark text-white">
+            Vehicle Count by Road
+        </div>
 
-            <tr>
-                <td>GT Road</td>
-                <td>3900</td>
-                <td>3</td>
-            </tr>
-
-            <tr>
-                <td>Islamabad Expressway</td>
-                <td>3500</td>
-                <td>2</td>
-            </tr>
-
-        </table>
+        <div class="card-body">
+            <canvas id="vehicleChart"></canvas>
+        </div>
 
     </div>
-    
+
+    <br />
+
+    <!-- Traffic Distribution -->
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+            Traffic Level Distribution
+        </div>
+
+        <div class="card-body">
+            <canvas id="trafficPieChart"></canvas>
+        </div>
+
+    </div>
+
+    <br />
+
+    <!-- Report Summary -->
+
+    <div class="card">
+
+        <div class="card-header bg-primary text-white">
+            Report Summary
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered"
+                   id="reportSummaryTable">
+
+                <tr>
+                    <th>Total Roads</th>
+                    <td>@ViewBag.TotalRoads</td>
+                </tr>
+
+                <tr>
+                    <th>Total Vehicles</th>
+                    <td>@ViewBag.TotalVehicles</td>
+                </tr>
+
+                <tr>
+                    <th>Total Signals</th>
+                    <td>@ViewBag.TotalSignals</td>
+                </tr>
+
+                <tr>
+                    <th>Total Emergencies</th>
+                    <td>@ViewBag.TotalEmergencies</td>
+                </tr>
+
+                <tr>
+                    <th>Average Speed</th>
+                    <td>@ViewBag.AverageSpeed km/h</td>
+                </tr>
+
+                <tr>
+                    <th>Most Congested Road</th>
+                    <td>@ViewBag.TopRoad</td>
+                </tr>
+
+                <tr>
+                    <th>Fastest Road</th>
+                    <td>@ViewBag.FastestRoad</td>
+                </tr>
+
+            </table>
+
+            <div class="mt-3">
+
+                <button onclick="window.print()"
+                        class="btn btn-success">
+                    🖨 Print Report
+                </button>
+
+                <button onclick="exportTableToExcel()"
+                        class="btn btn-primary ms-2">
+                    📊 Download Excel
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
+
+<!-- Libraries -->
+
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Charts -->
+
+<script>
+
+    var roadNames = [
+    @foreach (var road in ViewBag.RoadNames)
+    {
+        <text>'@road', </text>
+    }
+        ];
+
+    var vehicleCounts = [
+    @foreach (var count in ViewBag.VehicleCounts)
+    {
+        <text>@count, </text>
+    }
+        ];
+
+    new Chart(
+        document.getElementById('vehicleChart'),
+        {
+            type: 'bar',
+
+            data:
+            {
+                labels: roadNames,
+
+                datasets:
+                    [{
+                        label: 'Vehicles',
+                        data: vehicleCounts,
+                        backgroundColor: '#0d6efd'
+                    }]
+            }
+        });
+
+    new Chart(
+        document.getElementById('trafficPieChart'),
+        {
+            type: 'pie',
+
+            data:
+            {
+                labels:
+                    [
+                        'Critical',
+                        'Heavy',
+                        'High',
+                        'Medium',
+                        'Low'
+                    ],
+
+                datasets:
+                    [{
+                        data:
+                            [
+    @ViewBag.CriticalCount,
+    @ViewBag.HeavyCount,
+    @ViewBag.HighCount,
+    @ViewBag.MediumCount,
+    @ViewBag.LowCount
+                        ],
+
+                        backgroundColor:
+                            [
+                                '#dc3545',
+                                '#198754',
+                                '#ffc107',
+                                '#0dcaf0',
+                                '#6c757d'
+                            ]
+                    }]
+            }
+        });
+
+</script>
+
+<!-- Excel Export -->
+
+<script>
+
+    function exportTableToExcel() {
+        var table =
+            document.getElementById("reportSummaryTable");
+
+        var workbook =
+            XLSX.utils.table_to_book(
+                table,
+                {
+                    sheet: "Traffic Report"
+                });
+
+        XLSX.writeFile(
+            workbook,
+            "Traffic_Report.xlsx");
+    }
+
+</script>

@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Signal Logs";
+}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        🚦 Signal Override Logs
+    </h2>
+
+    <div class="card border-primary">
+
+        <div class="card-body text-center">
+
+            <h5>Total Signal Actions</h5>
+
+            <h2>@ViewBag.TotalLogs</h2>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+
+            Signal Activity History
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-bordered table-hover">
+
+                <thead class="table-dark">
+
+                    <tr>
+                        <th>Road</th>
+                        <th>Previous</th>
+                        <th>New</th>
+                        <th>Reason</th>
+                        <th>Date</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in ViewBag.Logs)
+                    {
+                        <tr>
+
+                            <td>@item.RoadName</td>
+
+                            <td>
+                                <span class="badge bg-danger">
+                                    @item.PreviousStatus
+                                </span>
+                            </td>
+
+                            <td>
+                                <span class="badge bg-success">
+                                    @item.NewStatus
+                                </span>
+                            </td>
+
+                            <td>@item.Reason</td>
+
+                            <td>
+                                @item.CreatedAt.ToString("dd-MMM-yyyy HH:mm")
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

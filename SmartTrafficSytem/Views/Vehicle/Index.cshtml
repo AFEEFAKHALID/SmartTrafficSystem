@@ -1,0 +1,38 @@
+﻿@model IEnumerable<SmartTrafficSystem.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Vehicle Records";
+}
+
+<h2>Vehicle Records</h2>
+
+<table class="table table-bordered">
+
+   
+    <thead>
+        <tr>
+            <th>Vehicle ID</th>
+            <th>Road ID</th>
+            <th>Vehicle Type</th>
+            <th>Vehicle Count</th>
+            <th>Recorded At</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.VehicleId</td>
+                <td>@item.RoadId</td>
+                <td>@item.VehicleType</td>
+                <td>@item.VehicleCount</td>
+                <td>@item.RecordedAt</td>
+            </tr>
+        }
+
+    </tbody>
+   
+
+</table>

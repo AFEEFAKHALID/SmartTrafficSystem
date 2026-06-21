@@ -2,54 +2,134 @@
     ViewData["Title"] = "Notifications";
 }
 
-<h2>🔔 Notification Center</h2>
+<div class="container-fluid">
 
-<div class="card">
+    <h2 class="mb-4">
+        🔔 Notification Center
+    </h2>
 
-    
-    <div class="card-header bg-danger text-white">
+    <!-- Cards -->
 
-        Recent Alerts
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="card border-primary">
+                <div class="card-body text-center">
+                    <h5>Total Alerts</h5>
+                    <h3>@ViewBag.TotalNotifications</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-danger">
+                <div class="card-body text-center">
+                    <h5>Emergency Alerts</h5>
+                    <h3>@ViewBag.EmergencyAlerts</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-warning">
+                <div class="card-body text-center">
+                    <h5>Traffic Alerts</h5>
+                    <h3>@ViewBag.TrafficAlerts</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card border-info">
+                <div class="card-body text-center">
+                    <h5>Incident Alerts</h5>
+                    <h3>@ViewBag.IncidentAlerts</h3>
+                </div>
+            </div>
+        </div>
 
     </div>
 
-    <div class="card-body">
+    <br />
 
-        <table class="table table-bordered">
+    <!-- Notification Table -->
 
-            <tr>
-                <th>Time</th>
-                <th>Alert</th>
-                <th>Priority</th>
-            </tr>
+    <div class="card">
 
-            <tr>
-                <td>12:40 PM</td>
-                <td>Ambulance Detected on Murree Road</td>
-                <td>HIGH</td>
-            </tr>
+        <div class="card-header bg-dark text-white">
+            Notification History
+        </div>
 
-            <tr>
-                <td>12:20 PM</td>
-                <td>VIP Convoy Activated</td>
-                <td>HIGH</td>
-            </tr>
+        <div class="card-body">
 
-            <tr>
-                <td>11:55 AM</td>
-                <td>Traffic Congestion on GT Road</td>
-                <td>MEDIUM</td>
-            </tr>
+            <table class="table table-bordered table-hover">
 
-            <tr>
-                <td>11:20 AM</td>
-                <td>Signal Duration Updated</td>
-                <td>LOW</td>
-            </tr>
+                <thead class="table-dark">
 
-        </table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Message</th>
+                        <th>Type</th>
+                        <th>Date</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in ViewBag.Notifications)
+                    {
+                        <tr>
+
+                            <td>@item.NotificationId</td>
+
+                            <td>@item.Title</td>
+
+                            <td>@item.Message</td>
+
+                            <td>
+
+                                @if (item.Type == "Emergency")
+                                {
+                                    <span class="badge bg-danger">
+                                        Emergency
+                                    </span>
+                                }
+                                else if (item.Type == "Traffic")
+                                {
+                                    <span class="badge bg-warning text-dark">
+                                        Traffic
+                                    </span>
+                                }
+                                else if (item.Type == "Incident")
+                                {
+                                    <span class="badge bg-info text-dark">
+                                        Incident
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">
+                                        Signal
+                                    </span>
+                                }
+
+                            </td>
+
+                            <td>
+                                @item.CreatedAt.ToString("dd-MMM-yyyy HH:mm")
+                            </td>
+
+                        </tr>
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
-    
 
 </div>

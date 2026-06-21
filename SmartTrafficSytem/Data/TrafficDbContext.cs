@@ -15,14 +15,27 @@ namespace SmartTrafficSystem.Data
         public DbSet<Emergency> Emergencies { get; set; }
         public DbSet<TrafficData> TrafficData { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Incident> Incidents { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<SignalLog> SignalLogs { get; set; }
+        public DbSet<EmergencyHistory> EmergencyHistory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Road>().HasKey(r => r.RoadId);
-            modelBuilder.Entity<Signal>().HasKey(s => s.SignalId);
-            modelBuilder.Entity<Emergency>().HasKey(e => e.EmergencyId);
-            modelBuilder.Entity<TrafficData>().HasKey(t => t.TrafficId);
-            modelBuilder.Entity<Vehicle>().HasKey(v => v.VehicleId);
+            modelBuilder.Entity<Road>()
+                .HasKey(r => r.RoadId);
+
+            modelBuilder.Entity<Signal>()
+                .HasKey(s => s.SignalId);
+
+            modelBuilder.Entity<Emergency>()
+                .HasKey(e => e.EmergencyId);
+
+            modelBuilder.Entity<TrafficData>()
+                .HasKey(t => t.TrafficId);
+
+            modelBuilder.Entity<Vehicle>()
+                .HasKey(v => v.VehicleId);
 
             base.OnModelCreating(modelBuilder);
         }

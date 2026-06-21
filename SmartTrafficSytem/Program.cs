@@ -9,7 +9,8 @@ builder.Services.AddControllersWithViews();
 // PostgreSQL / Supabase Connection
 builder.Services.AddDbContext<TrafficDbContext>(options =>
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        o => o.CommandTimeout(120)));
 
 var app = builder.Build();
 
