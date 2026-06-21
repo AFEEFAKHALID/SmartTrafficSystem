@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: smart-traffic-system
+    runtime: docker
+    plan: free
