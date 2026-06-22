@@ -20,11 +20,22 @@ namespace SmartTrafficSystem.Controllers
                  join r in _context.Roads
                  on t.RoadId equals r.RoadId
 
+                 group new { t, r }
+                 by new
+                 {
+                     r.RoadId,
+                     r.RoadName
+                 }
+                 into g
+
                  select new
                  {
-                     r.RoadName,
-                     t.VehicleCount,
-                     t.TrafficLevel
+                     RoadName = g.Key.RoadName,
+                     VehicleCount = g.Max(x => x.t.VehicleCount),
+                     TrafficLevel = g
+                         .OrderByDescending(x => x.t.VehicleCount)
+                         .FirstOrDefault()
+                         .t.TrafficLevel
                  })
                  .OrderByDescending(x => x.VehicleCount)
                  .ToList();
