@@ -4,9 +4,9 @@ WORKDIR /src
 
 COPY . .
 
-RUN dotnet restore
+RUN dotnet restore SmartTrafficSystem.csproj
 
-RUN dotnet publish -c Release -o /app/publish
+RUN dotnet publish SmartTrafficSystem.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
 
